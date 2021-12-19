@@ -11,7 +11,7 @@ ARROWS = pygame.transform.scale(pygame.image.load(os.path.join('pics/arrows.png'
 # With this method, the time complexity of selecting and moving through the selected element on the list is O(1)
 
 class Node:
-    def __init__(self, value): # TIme complexity: O(1)
+    def __init__(self, value): # Time complexity: O(1)
         self.value = value
         self.next = None
         self.prev = None
