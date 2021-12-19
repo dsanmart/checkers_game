@@ -15,7 +15,7 @@ global difficulty_level
 difficulty_level = 1
 
 
-def welcome(): # Draw main menu. Run-time complexity depends on the time that the user takes to change the screen.
+def welcome(): # Draw main menu. Run-time complexity of O(1)
     run = True
     clock = pygame.time.Clock()
     m = Menu(WIN)
@@ -36,7 +36,7 @@ def welcome(): # Draw main menu. Run-time complexity depends on the time that th
 
         pygame.display.update()
 
-def welcome_credits(): # Draw credits screen and wait for backspace to be pressed to go back. Run-time complexity depends on the time that the user takes to change the screen.
+def welcome_credits(): # Draw credits screen and wait for backspace to be pressed to go back. Run-time complexity of O(1)
     run = True
     clock = pygame.time.Clock()
     m = Menu(WIN)
@@ -53,7 +53,7 @@ def welcome_credits(): # Draw credits screen and wait for backspace to be presse
 
         pygame.display.update()
 
-def welcome_difficulty(): # Screen in the main manu to set difficulty level of the AI. Run-time complexity depends on the time that the user takes to change the screen.
+def welcome_difficulty(): # Screen in the main manu to set difficulty level of the AI. Run-time complexity of O(1)
     run = True
     clock = pygame.time.Clock()
     m = Menu(WIN)
@@ -78,8 +78,8 @@ def get_pos_mouse(pos): # Run-time complexity of O(1)
     col = x // square_size
     return row, col
 
-# main function for the game
-def main(): # Run-time complexity depends on the time that the user takes to change the screen, quit, or win.
+# main function for the game. 
+def main():
     run = True
     clock = pygame.time.Clock()
     game = Game(WIN)
@@ -110,7 +110,7 @@ def main(): # Run-time complexity depends on the time that the user takes to cha
 
         game.update()
 
-def draw_winner(winner): # Draw screen showing the winner of the game. Run-time complexiy depends on the time that the user takes to close the window or there is a winner.
+def draw_winner(winner): # Draw screen showing the winner of the game. Run-time complexiy of O(1)
     run = True
     clock = pygame.time.Clock()
     m = Menu(WIN)
