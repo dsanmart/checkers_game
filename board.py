@@ -9,7 +9,7 @@ class Board:
         self.red_kings = self.white_kings = 0
         self.create_board()
     
-    def draw_squares(self, win): #drawing the squares for the checkers board
+    def draw_squares(self, win): #drawing the squares for the checkers board. Avg. runtime of O(n^2)
         #fill window with black
         win.fill(black)
         # defining checker board pattern, that is the reason why we use 'row % 2'
@@ -17,10 +17,10 @@ class Board:
             for col in range(row % 2, cols, 2):
                 pygame.draw.rect(win, grey, (row * square_size, col * square_size, square_size, square_size))
 
-    def evaluate(self): # This is to evaluate the score that a move will have
+    def evaluate(self): # This is to evaluate the score that a move will have. Avg. runtime of O(1)
         return self.white_remaining - self.red_remaining + (self.white_kings * 0.5 - self.red_kings * 0.5) # Add score for kings generation as it is an advantage
     
-    def get_all_pieces(self, color): # Function to get all the checkers of a certain color in order to later check its possible moves
+    def get_all_pieces(self, color): # Function to get all the checkers of a certain color in order to later check its possible moves. Avg. runtime of O(n^2)
         checkers = []
         for row in self.board: # self.board stores all of the checks in a 2d array splited in rows
             for checker in row:
@@ -28,7 +28,7 @@ class Board:
                     checkers.append(checker)
         return checkers
 
-    def move(self, piece, row, col):
+    def move(self, piece, row, col): # Avg. runtime of O(n)
         self.board[piece.row][piece.col], self.board[row][col] = self.board[row][col], self.board[piece.row][piece.col] #accessing the different dimensions of the array through indexing notation, and swapping the positions of the pieces to simulate the movement
         piece.move(row, col)
 
@@ -40,11 +40,11 @@ class Board:
             else:
                 self.red_kings += 1 
 
-    def get_piece(self, row, col):
+    def get_piece(self, row, col): # Avg. runtime of O(1)
         # get the piece to be moved
         return self.board[row][col]
 
-    def create_board(self):
+    def create_board(self): # Avg. runtime of O(n^2)
         for row in range(rows):
             self.board.append([]) # interior lists for each row of the board
             for col in range(cols):
@@ -58,7 +58,7 @@ class Board:
                 else:
                     self.board[row].append(0)
         
-    def draw(self, win):
+    def draw(self, win): # Avg. runtime of O(n^2)
         # drawing the board and pieces
         self.draw_squares(win)
         for row in range(rows):
@@ -76,7 +76,7 @@ class Board:
                 else:
                     self.white_remaining -= 1
     
-    def winner(self): # The winner() function simply determines the winner of the game by checking which color player lost all their pieces first. The function simply just checks the remaining pieces of each color.
+    def winner(self): # Avg. runtime of O(1). The winner() function simply determines the winner of the game by checking which color player lost all their pieces first. The function simply just checks the remaining pieces of each color.
         if self.red_remaining <= 0:
             winner_player = "white"
             return winner_player
@@ -86,7 +86,7 @@ class Board:
         
         return None 
     
-    def get_valid_moves(self, piece): # This function updates the possible moves of all the pieces on the board using an if loop
+    def get_valid_moves(self, piece): # Time Complexity: O(n). This function updates the possible moves of all the pieces on the board using an if loop
         moves = {}
         left = piece.col - 1
         right = piece.col + 1
@@ -101,7 +101,7 @@ class Board:
     
         return moves
 
-    def _traverse_left(self, start, stop, step, color, left, skipped=[]): # This function has nested loops inside a loop, each with a time complexity of O(n) as the moves decrement on each run of the loop
+    def _traverse_left(self, start, stop, step, color, left, skipped=[]): # Time Complexity : O(n^3). This function has nested loops inside a loop, each with a time complexity of O(n) as the moves decrement on each run of the loop
         moves = {}
         last = []
         for r in range(start, stop, step):
@@ -134,7 +134,7 @@ class Board:
         
         return moves
 
-    def _traverse_right(self, start, stop, step, color, right, skipped=[]): # This function has nested loops inside a loop, each with a time complexity of O(n) as the moves decrement on each run of the loop
+    def _traverse_right(self, start, stop, step, color, right, skipped=[]): # Time Complexity : O(n^3). This function has nested loops inside a loop, each with a time complexity of O(n) as the moves decrement on each run of the loop
         moves = {}
         last = []
         for r in range(start, stop, step):
