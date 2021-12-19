@@ -78,7 +78,7 @@ def get_pos_mouse(pos): # Run-time complexity of O(1)
     col = x // square_size
     return row, col
 
-# main function for the game. 
+# main function for the game
 def main():
     run = True
     clock = pygame.time.Clock()
