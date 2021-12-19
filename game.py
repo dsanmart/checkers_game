@@ -7,25 +7,25 @@ class Game:
         self._init()
         self.win = win
     
-    def update(self):
+    def update(self): # This function checks through each row and column (m and n) and lists out the possible move for each piece on each square.
         self.board.draw(self.win)
         self.draw_valid_moves(self.valid_moves)
         pygame.display.update()
 
-    def _init(self):
+    def _init(self): # This function just states the base state of the board
         self.selected = None
         self.board = Board()
         self.turn = red
         self.valid_moves = {}
 
-    def winner(self):
+    def winner(self): # Time Complexity: O(1)
         winner_player = self.board.winner()
         return winner_player
 
-    def reset(self):
+    def reset(self): # This function just resets the whole board back to the base state.
         self._init()
 
-    def select(self, row, col):
+    def select(self, row, col): # This function goes through the rows and columns to determine the available moves of the piece that we selected
         if self.selected:
             result = self._move(row, col)
             if not result:
@@ -40,7 +40,7 @@ class Game:
             
         return False
 
-    def _move(self, row, col):
+    def _move(self, row, col): # This function goes through the rows and columns to figure out the possible moves for a certain piece
         piece = self.board.get_piece(row, col)
         if self.selected and piece == 0 and (row, col) in self.valid_moves:
             self.board.move(self.selected, row, col)
@@ -53,19 +53,19 @@ class Game:
 
         return True
 
-    def draw_valid_moves(self, moves):
+    def draw_valid_moves(self, moves): # This function uses _move() and visualizes the possible squares on the board that a piece can move to.
         for move in moves:
             row, col = move
             pygame.draw.circle(self.win, blue, (col * square_size + square_size//2, row * square_size + square_size//2), 15)
 
-    def change_turn(self):
+    def change_turn(self): # This function simply just changes the turn of who's playing
         self.valid_moves = {}
         if self.turn == red:
             self.turn = white
         else:
             self.turn = red
 
-    def get_board(self): # Function to return the board to the ai algorithm
+    def get_board(self): # Function to return the board to the AI algorithm
         return self.board
     
     def ai_move(self, board): # Function to draw the moves that the AI has made and pass the turn to the player
