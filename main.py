@@ -15,7 +15,7 @@ global difficulty_level
 difficulty_level = 1
 
 
-def welcome(): # Draw main menu. Run-time complexity of O(1)
+def welcome(): # Draw main menu. Run-time complexity of O(1). The run-time is always constant, as will be for the loading of the screens below.
     run = True
     clock = pygame.time.Clock()
     m = Menu(WIN)
@@ -78,7 +78,7 @@ def get_pos_mouse(pos): # Run-time complexity of O(1)
     col = x // square_size
     return row, col
 
-# main function for the game. 
+# main function for the game. Run-time complexity of O(N), where N are the moves made by the player.
 def main():
     run = True
     clock = pygame.time.Clock()
