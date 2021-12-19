@@ -36,7 +36,7 @@ def minimax(board, tree_depth, alpha, beta, cpu_turn, gamefunc):
         return min_score, best_move
 
 
-def get_all_moves(board, color, gamefunc):
+def get_all_moves(board, color, gamefunc): # Time complexity: O(n*m). This function goes through all the left pieces of a color (n) and then checks the possible moves (m)
     moves = []
 
     for checker in board.get_all_pieces(color):
