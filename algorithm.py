@@ -5,7 +5,7 @@ import pygame
 # The minimax algorithm creates a recursive binary tree that has a time complexity of O(b^d), 
 # where b is the number of legal moves at each point and d is the maximum depth of the tree.
 # However, as we are using alpha-beta pruning we have time complexity for the best case which is O(b^(d/2))
-# Hence worst case is O(b^d) and best case O(b^(d/2))
+# Hence, the worst case scenario is O(b^d) and best case is O(b^(d/2))
 
 def minimax(board, tree_depth, alpha, beta, cpu_turn, gamefunc):
     if tree_depth == 0 or board.winner() != None:
