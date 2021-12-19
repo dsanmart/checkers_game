@@ -5,6 +5,7 @@ import pygame
 # The minimax algorithm creates a recursive binary tree that has a time complexity of O(b^d), 
 # where b is the number of legal moves at each point and d is the maximum depth of the tree.
 # However, as we are using alpha-beta pruning we have time complexity for the best case which is O(b^(d/2))
+# Hence worst case is O(b^d) and best case O(b^(d/2))
 
 def minimax(board, tree_depth, alpha, beta, cpu_turn, gamefunc):
     if tree_depth == 0 or board.winner() != None:
@@ -36,7 +37,7 @@ def minimax(board, tree_depth, alpha, beta, cpu_turn, gamefunc):
         return min_score, best_move
 
 
-def get_all_moves(board, color, gamefunc): # Time complexity: O(n*m). This function goes through all the left pieces of a color (n) and then checks the possible moves (m)
+def get_all_moves(board, color, gamefunc): # Time complexity: O(n*m). Worst case: O(n*m) This function goes through all the left pieces of a color (n) and then checks the possible moves (m)
     moves = []
 
     for checker in board.get_all_pieces(color):
@@ -50,7 +51,7 @@ def get_all_moves(board, color, gamefunc): # Time complexity: O(n*m). This funct
 
     return moves
 
-def simulate_move(checker, move, board, gamefunc, skip):
+def simulate_move(checker, move, board, gamefunc, skip): # Time complexity: O(1). Worst case: O(1). This function simulates a move by moving and removing it
     board.move(checker, move[0], move[1])
     if skip:
         board.remove(skip)
