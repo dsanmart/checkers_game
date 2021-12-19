@@ -11,7 +11,7 @@ ARROWS = pygame.transform.scale(pygame.image.load(os.path.join('pics/arrows.png'
 # With this method, the time complexity of selecting and moving through the selected element on the list is O(1)
 
 class Node:
-    def __init__(self, value):
+    def __init__(self, value): # TIme complexity: O(1)
         self.value = value
         self.next = None
         self.prev = None
@@ -20,7 +20,7 @@ class DoublyLinkedList:
     def __init__(self, value):
         self.start_node = Node(value)
 
-    def append(self, value):
+    def append(self, value): # Time complexity: O(n). Worst case: O(n). This function traverses the linked list to the point of insertion (end of the list) and then inserts it 
         current = self.start_node
         while current.next is not None:
             current = current.next
@@ -28,7 +28,7 @@ class DoublyLinkedList:
         current.next = new_node
         new_node.prev = current
 
-    def print_list(self):
+    def print_list(self): # Time complexity: O(n). Worst case: O(n). This function was only used for testing. It prints all the values from the linked list.
         current = self.start_node
         while current is not None:
             print(current.value)
@@ -36,7 +36,7 @@ class DoublyLinkedList:
 
 
 class Menu():
-    def __init__(self, win):
+    def __init__(self, win): # Time complexity: O(n). Worst case: O(n). Function to initialize the menu. It creates linked list with n elements
         self.window = win
         # Create linked list with the different menu options
         self.dlist = DoublyLinkedList("START GAME")
@@ -45,11 +45,11 @@ class Menu():
         self.dlist.append("QUIT")
         self.node = self.dlist.start_node # Set currrent node to the starting node ("Start Game")
 
-    def draw_menu(self):
+    def draw_menu(self): # Time complexity: O(1). This function draws the menu
         self.window.fill(black)
         self.draw_text(self.node.value, 40, width / 2, height / 2 - 20) # Call draw_text() sending the current node.value 
 
-    def draw_text(self, text, size, x, y ):
+    def draw_text(self, text, size, x, y ): # Time complexity: O(1). Worst case: O(1). This function draws the text of the menu
         font = pygame.font.Font(MENUFONT,60)
         font2 = pygame.font.Font(MENUFONT,size)
         font3 = pygame.font.Font(MENUFONT,20)
@@ -62,7 +62,7 @@ class Menu():
         self.window.blit(line2,text_rect)
         
 
-    def check_events(self):
+    def check_events(self): # Time complexity: O(1). Worst case: O(n) This function checks for n events that happen within the FPS rate
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -78,7 +78,7 @@ class Menu():
                     if self.node.prev != None:
                         self.node = self.node.prev
 
-    def draw_credits(self):
+    def draw_credits(self): # Time complexity: O(1). Worst case: O(1). This function draws the credits
         self.window.fill(black)
         font = pygame.font.Font(MENUFONT,40)
         font2 = pygame.font.Font(MENUFONT,30)
@@ -92,7 +92,7 @@ class Menu():
         self.window.blit(font3.render("Saad Sahir", True, white), (320, height/2 + 100))
         self.window.blit(font3.render("Carlo Pastor", True, white), (290, height/2 + 140))
 
-    def draw_difficulty(self, current):
+    def draw_difficulty(self, current): # Time complexity: O(1). Worst case: O(1). This function draws the difficulty menu
         self.window.fill(black)
         font = pygame.font.Font(MENUFONT,40)
         font2 = pygame.font.Font(MENUFONT,30)
@@ -104,7 +104,7 @@ class Menu():
             self.window.blit(font3.render("Careful The higher the level", True, white), (150, 600))
             self.window.blit(font3.render("the slower the cpu will play", True, white), (150, 640))
 
-    def check_events_difficulty(self, initial_level, current_level):
+    def check_events_difficulty(self, initial_level, current_level):  # Time complexity: O(1). Worst case: O(n) This function checks for n events that happen within the FPS rate
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -121,7 +121,7 @@ class Menu():
                         current_level += 1
         return current_level
 
-    def draw_winner(self, winner, difficulty_level):
+    def draw_winner(self, winner, difficulty_level): # Time complexity: O(1). Worst case: O(1). This function draws the winner screen
         self.window.fill(black)
         font = pygame.font.Font(MENUFONT,60)
         font2 = pygame.font.Font(MENUFONT,40)
@@ -139,9 +139,3 @@ class Menu():
         text_rect3.center = (width / 2, height / 2 + 60)
         self.window.blit(line3,text_rect3)
 
-#dlist = DoublyLinkedList("START GAME")
-#dlist.append("DIFFICULTY")
-#dlist.append("CREDITS")
-#dlist.append("QUIT")
-
-#dlist.print_list()
