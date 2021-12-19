@@ -15,7 +15,7 @@ global difficulty_level
 difficulty_level = 1
 
 
-def welcome(): # Draw main menu
+def welcome(): # Draw main menu. Run-time complexity of O(1)
     run = True
     clock = pygame.time.Clock()
     m = Menu(WIN)
@@ -36,7 +36,7 @@ def welcome(): # Draw main menu
 
         pygame.display.update()
 
-def welcome_credits(): # Draw credits screen and wait for backspace to be pressed to go back
+def welcome_credits(): # Draw credits screen and wait for backspace to be pressed to go back. Run-time complexity of O(1)
     run = True
     clock = pygame.time.Clock()
     m = Menu(WIN)
@@ -53,7 +53,7 @@ def welcome_credits(): # Draw credits screen and wait for backspace to be presse
 
         pygame.display.update()
 
-def welcome_difficulty(): # Screen in the main manu to set difficulty level of the AI
+def welcome_difficulty(): # Screen in the main manu to set difficulty level of the AI. Run-time complexity of O(1)
     run = True
     clock = pygame.time.Clock()
     m = Menu(WIN)
@@ -71,14 +71,14 @@ def welcome_difficulty(): # Screen in the main manu to set difficulty level of t
         pygame.display.update()
     difficulty_level = currentdif # Set global variable with the selected difficulty
 
-def get_pos_mouse(pos):
+def get_pos_mouse(pos): # Run-time complexity of O(1)
     # get position of mouse
     x, y = pos
     row = y // square_size
     col = x // square_size
     return row, col
 
-# main function for the game
+# main function for the game. 
 def main():
     run = True
     clock = pygame.time.Clock()
@@ -110,7 +110,7 @@ def main():
 
         game.update()
 
-def draw_winner(winner): # Draw screen showing the winner of the game
+def draw_winner(winner): # Draw screen showing the winner of the game. Run-time complexiy of O(1)
     run = True
     clock = pygame.time.Clock()
     m = Menu(WIN)
