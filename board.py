@@ -9,7 +9,7 @@ class Board:
         self.red_kings = self.white_kings = 0
         self.create_board()
     
-    def draw_squares(self, win): #drawing the squares for the checkers board. Avg. runtime of O(n^2). Worst case: O(n^2).
+    def draw_squares(self, win): #drawing the squares for the checkers board. Avg. runtime of O(n). Worst case: O(n^2).
         #fill window with black
         win.fill(black)
         # defining checker board pattern, that is the reason why we use 'row % 2'
@@ -44,7 +44,7 @@ class Board:
         # get the piece to be moved
         return self.board[row][col]
 
-    def create_board(self): # Avg. runtime of O(n*m). Worst: O(n^2).
+    def create_board(self): # Avg. runtime of O(n). Worst: O(n^2).
         for row in range(rows):
             self.board.append([]) # interior lists for each row of the board
             for col in range(cols):
@@ -67,7 +67,7 @@ class Board:
                 if piece != 0:
                     piece.draw(win)
 
-    def remove(self, pieces):  # Time Complexity: O(m*n). Worst: O(n^2). The remove() function goes through each row and column (m*n) and checks its conditions based on that location layout
+    def remove(self, pieces):  # Time Complexity: O(n). Worst: O(n^2). The remove() function goes through each row and column (m*n) and checks its conditions based on that location layout
         for piece in pieces:
             self.board[piece.row][piece.col] = 0
             if piece != 0:
@@ -101,7 +101,7 @@ class Board:
     
         return moves
 
-    def _traverse_left(self, start, stop, step, color, left, skipped=[]): # Time Complexity : O(n).Worst: O(n^3). This function has nested loops inside a loop, each with a time complexity of O(n) as the moves decrement on each run of the loop
+    def _traverse_left(self, start, stop, step, color, left, skipped=[]): # Time Complexity : O(n).Worst: O(n^2). This function has nested loops inside a loop, each with a time complexity of O(n) as the moves decrement on each run of the loop
         moves = {}
         last = []
         for r in range(start, stop, step):
@@ -134,7 +134,7 @@ class Board:
         
         return moves
 
-    def _traverse_right(self, start, stop, step, color, right, skipped=[]): # Time Complexity : O(n).Worst: O(n^3). This function has nested loops inside a loop, each with a time complexity of O(n) as the moves decrement on each run of the loop
+    def _traverse_right(self, start, stop, step, color, right, skipped=[]): # Time Complexity : O(n).Worst: O(n^2). This function has nested loops inside a loop, each with a time complexity of O(n) as the moves decrement on each run of the loop
         moves = {}
         last = []
         for r in range(start, stop, step):
